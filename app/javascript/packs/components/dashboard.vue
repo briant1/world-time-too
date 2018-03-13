@@ -18,7 +18,7 @@
                         </div>
                         <div class="mt-3">
                             <i class="fas fa-moon" v-show="city.has_dst"></i>
-                            {{city.current_time | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}
+                            {{city.current_time }}
                         </div>
                     </div>
                     <div class="card-footer">

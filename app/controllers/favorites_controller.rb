@@ -3,7 +3,8 @@ class FavoritesController < ApplicationController
     cities = City.where("favorites.user_id = ?", current_user.id).joins(:favorites).includes(:country)
     cities.each do |city|
       timezone = Timezone.fetch(city.timezone)
-      city.current_time = timezone.local_to_utc(Time.now)
+      #render on server since we know the timezone/time and don't want the browser to alter it
+      city.current_time = timezone.time(Time.now).strftime("%A, %B %d %Y, %H:%M%p")
     end
     #TODO: json_builder
     render :json => { success: true, data: cities.as_json(methods: [:name, :current_time], include: :country), :status => 200 }
