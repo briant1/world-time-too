@@ -1,0 +1,24 @@
+%nav.navbar.navbar-expand-lg.w-100
+  .container
+    = link_to '/', {class: "navbar-brand"} do
+      %i.fas.fa-globe
+      world time
+    %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+        %i.fa.fa-bars
+    .collapse.navbar-collapse#navbarText
+      %ul.nav.navbar-nav.navbar-right.ml-auto.w-100.justify-content-end
+        - if user_signed_in?
+          %li.nav-item
+            = link_to "dashboard", dashboard_path, class: 'nav-link'
+          %li.nav-item
+            = link_to "Signed in as #{current_user.email}", edit_user_registration_path, class: 'nav-link'
+          %li.nav-item
+            = link_to "Sign out", destroy_user_session_path, :method => :delete, class: 'nav-link'
+        - else
+          %li.nav-item
+            = link_to "Sign in", new_user_session_path, class: "nav-link"
+          %li.nav-item
+            = link_to "Sign up", new_user_registration_path, class: "nav-link"
+
+

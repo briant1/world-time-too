@@ -1,0 +1,35 @@
+.hero-container
+  = video_tag "background.mp4", loop: true, autoplay: true, muted: true, class: 'hero-video'
+  .hero-text
+    .white.center.mt-5
+      %h2
+        World Time
+      For those who need to tell time and have never used a smartphone
+.container.mt-5
+  .row.justify-content-center.center
+    .col-md-6
+      .dark.bold
+        Most Popular Cities
+        - @popular.each do |city|
+          = render "marketing/featured_city", city: city
+    .col-md-6
+      .dark.bold
+        Recently Added Cities
+        - @recent.each do |city|
+          = render "marketing/featured_city", city: city
+.container.mt-5.mb-5
+  .row.justify-content-center.center
+    .col-md-6
+      .dark.bold
+        All Countries
+        - @countries.each do |country|
+          .text-left.mt-3
+            .dark.bold
+              = country.name
+            .light
+              = link_to country.wikipedia_url, country.wikipedia_url, class: 'light'
+%footer.container-fluid.pt-5.pb-2
+  .row.justify-content-center
+    .light
+      %i.fas.fa-globe
+      World Time
